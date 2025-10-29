@@ -54,19 +54,55 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final slideShowMovies = ref.watch(moviesSlideShowProvider);
 
     /// Lista deslizable que muestra todas las películas
-    return Column(
-      children: [
-        CustomAppbar(),
-        MovieSlideshow(movies: slideShowMovies),
-        MovieHorizontalListview(
-          movies: nowPlayingMovies,
-          title: 'En cines',
-          subTitle: "Lunes 27 de Octubre",
-          loadNextPage: () {
-            print('Evento lanzado por el listener de HorizontalListView');
-          },
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          CustomAppbar(),
+          MovieSlideshow(movies: slideShowMovies),
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'En cines',
+            subTitle: "Lunes 27 de Octubre",
+            loadNextPage: () => ref
+                .read(nowPlayingMoviesProvider.notifier)
+                .loadNextPage(),
+          ),
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Proximamente',
+            subTitle: "Noviembre",
+            loadNextPage: () => ref
+                .read(nowPlayingMoviesProvider.notifier)
+                .loadNextPage(),
+          ),
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Populares',
+            subTitle: "Noviembre",
+            loadNextPage: () => ref
+                .read(nowPlayingMoviesProvider.notifier)
+                .loadNextPage(),
+          ),
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Mejor valoradas',
+            subTitle: "Noviembre",
+            loadNextPage: () => ref
+                .read(nowPlayingMoviesProvider.notifier)
+                .loadNextPage(),
+          ),
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Mexicanas',
+            subTitle: "Noviembre",
+            loadNextPage: () => ref
+                .read(nowPlayingMoviesProvider.notifier)
+                .loadNextPage(),
+          ),
+
+          const SizedBox(height: 10),
+        ],
+      ),
     );
   }
 }

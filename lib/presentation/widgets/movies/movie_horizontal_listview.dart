@@ -23,6 +23,7 @@ class MovieHorizontalListview extends StatefulWidget {
 }
 
 class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
+
     final scrollController = ScrollController();
     @override
     void initState() {
@@ -36,6 +37,14 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
         }
       });
     }
+
+    @override
+    void dispose() {
+      scrollController.dispose();
+      super.dispose();
+    }
+
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -61,55 +70,6 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
     );
   }
 }
-// class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
-//   final ScrollController scrollController = ScrollController();
-
-//   @override
-//   void initState() {
-//     super.initState();
-
-//     scrollController.addListener(() {
-//       if (widget.loadNextPage == null) return;
-
-//       if (scrollController.position.pixels + 200 >=
-//           scrollController.position.maxScrollExtent) {
-//         print('Cargando las peliculas siguientes...');
-//         widget.loadNextPage!();
-//       }
-//     });
-//   }
-
-//   @override
-//   void dispose() {
-//     scrollController.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       height: 360,
-//       child: Column(
-//         children: [
-//           if (widget.title != null || widget.subTitle != null)
-//             _CurrDate(place: widget.title, formatedDate: widget.subTitle),
-
-//           Expanded(
-//             child: ListView.builder(
-//               controller: scrollController,
-//               itemCount: widget.movies.length,
-//               scrollDirection: Axis.horizontal,
-//               physics: const BouncingScrollPhysics(),
-//               itemBuilder: (context, index) {
-//                 return _Slide(movie: widget.movies[index]);
-//               },
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 // ---------------- SLIDE ----------------
 

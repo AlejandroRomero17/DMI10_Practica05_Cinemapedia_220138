@@ -18,10 +18,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: _HomeView(),
-    bottomNavigationBar: CustomBottomNavigationbar(),
+    return const Scaffold(
+      body: _HomeView(),
+      bottomNavigationBar: CustomBottomNavigationbar(),
     );
-
   }
 }
 
@@ -58,11 +58,14 @@ class _HomeViewState extends ConsumerState<_HomeView> {
       children: [
         CustomAppbar(),
         MovieSlideshow(movies: slideShowMovies),
-        MovieHorizontalListview(movies: nowPlayingMovies, title: 'En cines', subTitle: "Lunes 27 de Octubre",)
-
-
-
-
+        MovieHorizontalListview(
+          movies: nowPlayingMovies,
+          title: 'En cines',
+          subTitle: "Lunes 27 de Octubre",
+          loadNextPage: () {
+            print('Evento lanzado por el listener de HorizontalListView');
+          },
+        ),
       ],
     );
   }
